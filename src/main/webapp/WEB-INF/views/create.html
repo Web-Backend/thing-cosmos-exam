@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Thing</title>
+</head>
+<body>
+<a style="color: chocolate" href="/things">Back to thing list</a>
+<h1 style="color: yellowgreen">Create a new Thing</h1>
+<th:block th:if="${message}">
+    <h2 th:text="${message}" style="color: red"></h2>
+</th:block>
+<form method="post" th:action="@{/create-thing}" th:object="${thing}">
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Magic script</td>
+            <td><input type="text" th:field="*{magicScript}"></td>
+            <td th:if="${#fields.hasErrors('magicScript')}" th:errors="*{magicScript}">Magic Script Error</td>
+        </tr>
+        <tr>
+            <td>Mana needed</td>
+            <td><input type="text" th:field="*{manaNeeded}"></td>
+            <td th:if="${#fields.hasErrors('manaNeeded')}" th:errors="*{manaNeeded}">Mana Needed Error</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
